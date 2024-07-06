@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{7b35a695-6028-4cde-9c45-7f8475b36d5d}</ProjectGuid>
+    <RootNamespace>LYGui</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediate\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>IMGUI_DEFINE_MATH_OPERATORS;GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\src;$(SolutionDir)$(ProjectName)\Dependencies\ImGui;$(SolutionDir)$(ProjectName)\Dependencies\PugiXml\include;$(SolutionDir)$(ProjectName)\Dependencies\OpenCV\include;$(SolutionDir)$(ProjectName)\Dependencies\GLFW\include;$(SolutionDir)$(ProjectName)\Dependencies\GLEW\include;$(SolutionDir)$(ProjectName)\Dependencies\spdlog\include;$(SolutionDir)$(ProjectName)\Dependencies\ThreadPool\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(ProjectName)\Dependencies\GLFW\lib-vc2022;$(SolutionDir)$(ProjectName)\Dependencies\OpenCV\lib\$(Configuration);$(SolutionDir)$(ProjectName)\Dependencies\GLEW\lib\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opencv_world460.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /S /I /Y "$(ProjectDir)Asset" "$(TargetDir)Asset"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Dependencies\ThreadPool\tests\BS_thread_pool_test.cpp" />
+    <ClCompile Include="src\Function\Math.cpp" />
+    <ClCompile Include="src\GUI\Tools\Plot\PlotToolWindow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\GUI\Style\Style.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\GUI\Tools\Debugger\DebugToolWindow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\GUI\Tools\OpenCV\OpenCVToolWindow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\GUI\Main\Application.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Dependencies\PugiXml\include\PugiXml\pugixml.cpp" />
+    <ClCompile Include="src\GUI\Tools\ImGuiToolWindow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Dependencies\ImGui\imgui.cpp" />
+    <ClCompile Include="Dependencies\ImGui\ImGuiAl\msgbox\imguial_msgbox.cpp" />
+    <ClCompile Include="Dependencies\ImGui\ImGuiAl\term\imguial_term.cpp" />
+    <ClCompile Include="Dependencies\ImGui\ImGuiFileDialog\ImGuiFileDialog.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_extention.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_tables.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="Dependencies\ImGui\ImPlot\implot.cpp" />
+    <ClCompile Include="Dependencies\ImGui\ImPlot\implot_demo.cpp" />
+    <ClCompile Include="Dependencies\ImGui\ImPlot\implot_items.cpp" />
+    <ClCompile Include="src\GUI\Investigation\Hardware\HardwareUsage.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\Function\Logger.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\LYGui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\Function\OpenCV.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\Function\Plot.cpp" />
+    <ClCompile Include="src\GUI\Window\ImGuiWindow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\GUI\Window\Logger\LoggerWindow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dependencies\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="Dependencies\ImGui\imstb_textedit.h" />
+    <ClInclude Include="Dependencies\ImGui\imstb_truetype.h" />
+    <ClInclude Include="Dependencies\ThreadPool\include\ThreadPool\BS_thread_pool.hpp" />
+    <ClInclude Include="Dependencies\ThreadPool\include\ThreadPool\BS_thread_pool_light.hpp" />
+    <ClInclude Include="Dependencies\ThreadPool\include\ThreadPool\ThreadPool.h" />
+    <ClInclude Include="Dependencies\vsshell\include\vsshell\vsshell80.h" />
+    <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\Function\Math.h" />
+    <ClInclude Include="src\GUI\Tools\Plot\PlotToolWindow.h" />
+    <ClInclude Include="src\FilePath\FilePath.h" />
+    <ClInclude Include="src\GUI\Gui.h" />
+    <ClInclude Include="src\GUI\Style\Style.h" />
+    <ClInclude Include="src\GUI\Tools\Debugger\DebugToolWindow.h" />
+    <ClInclude Include="src\GUI\Tools\OpenCV\OpenCVToolWindow.h" />
+    <ClInclude Include="src\GUI\Main\Application.h" />
+    <ClInclude Include="Dependencies\PugiXml\include\PugiXml\pugiconfig.hpp" />
+    <ClInclude Include="Dependencies\PugiXml\include\PugiXml\pugixml.hpp" />
+    <ClInclude Include="Dependencies\TeliCamSDK\TeliCamApi\include\TeliCamSDK\RegisterMap_BG_Type1.h" />
+    <ClInclude Include="Dependencies\TeliCamSDK\TeliCamApi\include\TeliCamSDK\RegisterMap_BG_Type2.h" />
+    <ClInclude Include="Dependencies\TeliCamSDK\TeliCamApi\include\TeliCamSDK\RegisterMap_BU.h" />
+    <ClInclude Include="Dependencies\TeliCamSDK\TeliCamApi\include\TeliCamSDK\TeliCamApi.h" />
+    <ClInclude Include="Dependencies\TeliCamSDK\TeliCamApi\include\TeliCamSDK\TeliCamNode.h" />
+    <ClInclude Include="Dependencies\TeliCamSDK\TeliCamApi\include\TeliCamSDK\TeliCamUtl.h" />
+    <ClInclude Include="Dependencies\TeliCamSDK\TeliCamApi\include\TeliCamSDK\TeliTypes.h" />
+    <ClInclude Include="Dependencies\TeliCamSDK\TeliCamApi\include\TeliCamSDK\XmlFeatures.h" />
+    <ClInclude Include="src\GUI\Tools\ImGuiToolWindow.h" />
+    <ClInclude Include="Dependencies\GLEW\include\GL\eglew.h" />
+    <ClInclude Include="Dependencies\GLEW\include\GL\glew.h" />
+    <ClInclude Include="Dependencies\GLEW\include\GL\glxew.h" />
+    <ClInclude Include="Dependencies\GLEW\include\GL\wglew.h" />
+    <ClInclude Include="Dependencies\GLFW\include\GLFW\glfw3.h" />
+    <ClInclude Include="Dependencies\GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="Dependencies\ImGui\imconfig.h" />
+    <ClInclude Include="Dependencies\ImGui\imgui.h" />
+    <ClInclude Include="Dependencies\ImGui\ImGuiAl\button\imguial_button.h" />
+    <ClInclude Include="Dependencies\ImGui\ImGuiAl\msgbox\imguial_msgbox.h" />
+    <ClInclude Include="Dependencies\ImGui\ImGuiAl\sparkline\imguial_sparkline.h" />
+    <ClInclude Include="Dependencies\ImGui\ImGuiAl\term\imguial_term.h" />
+    <ClInclude Include="Dependencies\ImGui\ImGuiFileDialog\dirent\dirent.h" />
+    <ClInclude Include="Dependencies\ImGui\ImGuiFileDialog\ImGuiFileDialog.h" />
+    <ClInclude Include="Dependencies\ImGui\ImGuiFileDialog\ImGuiFileDialogConfig.h" />
+    <ClInclude Include="Dependencies\ImGui\imgui_extension.h" />
+    <ClInclude Include="Dependencies\ImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="Dependencies\ImGui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Dependencies\ImGui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Dependencies\ImGui\imgui_internal.h" />
+    <ClInclude Include="Dependencies\ImGui\ImPlot\implot.h" />
+    <ClInclude Include="Dependencies\ImGui\ImPlot\implot_internal.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\calib3d.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\calib3d\calib3d.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\calib3d\calib3d_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\affine.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\async.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\base.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\bindings_utils.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\bufferpool.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\check.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\core_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda.inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\block.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\border_interpolate.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\color.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\common.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\datamov_utils.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\detail\color_detail.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\detail\reduce.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\detail\reduce_key_val.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\detail\transform_detail.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\detail\type_traits_detail.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\detail\vec_distance_detail.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\dynamic_smem.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\emulation.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\filters.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\funcattrib.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\functional.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\limits.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\reduce.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\saturate_cast.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\scan.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\simd_functions.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\transform.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\type_traits.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\utility.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\vec_distance.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\vec_math.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\vec_traits.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\warp.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\warp_reduce.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda\warp_shuffle.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda_stream_accessor.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cuda_types.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cvdef.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cvstd.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cvstd.inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cvstd_wrapper.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cv_cpu_dispatch.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\cv_cpu_helper.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\detail\async_promise.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\detail\dispatch_helper.impl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\detail\exception_ptr.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\directx.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\dualquaternion.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\dualquaternion.inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\eigen.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\fast_math.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\hal.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\interface.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_avx.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_avx512.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_cpp.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_forward.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_msa.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_neon.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_rvv.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_rvv071.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_sse.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_sse_em.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_vsx.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\intrin_wasm.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\msa_macros.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\hal\simd_utils.impl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\mat.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\mat.inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\matx.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\neon_utils.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\ocl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\ocl_genbase.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\ocl_defs.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\opencl_info.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\opencl_svm.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\autogenerated\opencl_clblas.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\autogenerated\opencl_clfft.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\autogenerated\opencl_core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\autogenerated\opencl_core_wrappers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\autogenerated\opencl_gl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\autogenerated\opencl_gl_wrappers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_clblas.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_clfft.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_core_wrappers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_gl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_gl_wrappers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_svm_20.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_svm_definitions.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opencl\runtime\opencl_svm_hsa_extension.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\opengl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\operations.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\optim.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\ovx.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\parallel\backend\parallel_for.openmp.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\parallel\backend\parallel_for.tbb.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\parallel\parallel_backend.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\persistence.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\quaternion.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\quaternion.inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\saturate.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\simd_intrinsics.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\softfloat.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\sse_utils.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\traits.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\types.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\types_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utility.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\allocator_stats.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\allocator_stats.impl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\filesystem.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\fp_control_utils.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\instrumentation.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\logger.defines.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\logger.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\logtag.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\tls.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\utils\trace.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\va_intel.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\version.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\core\vsx_utils.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\cvconfig.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\all_layers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\dict.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\dnn.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\dnn.inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\layer.details.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\layer.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\shape_utils.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\utils\debug_utils.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\utils\inference_engine.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\dnn\version.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\features2d.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\features2d\features2d.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\features2d\hal\interface.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\allocator.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\all_indices.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\any.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\autotuned_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\composite_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\config.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\defines.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\dist.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\dummy.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\dynamic_bitset.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\flann.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\flann_base.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\general.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\ground_truth.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\hdf5.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\heap.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\hierarchical_clustering_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\index_testing.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\kdtree_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\kdtree_single_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\kmeans_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\linear_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\logger.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\lsh_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\lsh_table.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\matrix.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\miniflann.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\nn_index.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\object_factory.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\params.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\random.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\result_set.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\sampling.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\saving.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\simplex_downhill.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\flann\timer.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\cpu\core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\cpu\gcpukernel.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\cpu\imgproc.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\cpu\stereo.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\cpu\video.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\fluid\core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\fluid\gfluidbuffer.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\fluid\gfluidkernel.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\fluid\imgproc.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\garg.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\garray.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gasync_context.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gcall.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gcommon.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gcompiled.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gcompiled_async.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gcompoundkernel.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gcomputation.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gcomputation_async.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gframe.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gkernel.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gmat.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gmetaarg.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gopaque.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gproto.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gpu\core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gpu\ggpukernel.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gpu\imgproc.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gscalar.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gstreaming.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gtransform.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gtyped.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\gtype_traits.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\imgproc.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\infer.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\infer\bindings_ie.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\infer\ie.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\infer\onnx.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\infer\parsers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\media.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\oak\infer.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\oak\oak.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\ocl\core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\ocl\goclkernel.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\ocl\imgproc.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\opencv_includes.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\operators.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\own\assert.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\own\convert.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\own\cvdefs.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\own\exports.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\own\mat.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\own\saturate.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\own\scalar.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\own\types.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\plaidml\core.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\plaidml\gplaidmlkernel.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\plaidml\plaidml.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\python\python.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\render.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\render\render.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\render\render_types.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\rmat.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\s11n.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\s11n\base.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\stereo.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\cap.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\desync.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\format.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\gstreamer\gstreamerpipeline.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\gstreamer\gstreamersource.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\meta.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\onevpl\accel_types.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\onevpl\cfg_params.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\onevpl\data_provider_interface.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\onevpl\device_selector_interface.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\onevpl\source.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\source.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\streaming\sync.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\util\any.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\util\compiler_hints.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\util\copy_through_move.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\util\optional.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\util\throw.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\util\type_traits.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\util\util.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\util\variant.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\gapi\video.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\highgui.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\highgui\highgui.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\highgui\highgui_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgcodecs.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgcodecs\imgcodecs.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgcodecs\imgcodecs_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgcodecs\ios.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgcodecs\legacy\constants_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgcodecs\macosx.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc\bindings.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc\detail\gcgraph.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc\hal\hal.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc\hal\interface.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc\imgproc.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc\imgproc_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc\segmentation.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\imgproc\types_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\ml.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\ml\ml.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\ml\ml.inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\objdetect.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\objdetect\detection_based_tracker.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\objdetect\face.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\objdetect\objdetect.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\opencv.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\opencv_modules.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\photo.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\photo\cuda.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\photo\legacy\constants_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\photo\photo.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\autocalib.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\blenders.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\camera.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\exposure_compensate.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\matchers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\motion_estimators.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\seam_finders.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\timelapsers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\util.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\util_inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\warpers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\detail\warpers_inl.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\stitching\warpers.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\video.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\videoio.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\videoio\cap_ios.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\videoio\legacy\constants_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\videoio\registry.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\videoio\videoio.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\videoio\videoio_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\video\background_segm.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\video\detail\tracking.detail.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\video\legacy\constants_c.h" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\video\tracking.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\video\video.hpp" />
+    <ClInclude Include="Dependencies\OpenCV\include\opencv2\world.hpp" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\async.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\async_logger-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\async_logger.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\cfg\argv.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\cfg\env.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\cfg\helpers-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\cfg\helpers.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\common-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\common.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\backtracer-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\backtracer.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\circular_q.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\console_globals.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\file_helper-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\file_helper.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\fmt_helper.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\log_msg-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\log_msg.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\log_msg_buffer-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\log_msg_buffer.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\mpmc_blocking_q.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\null_mutex.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\os-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\os.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\periodic_worker-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\periodic_worker.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\registry-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\registry.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\synchronous_factory.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\tcp_client-windows.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\tcp_client.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\thread_pool-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\thread_pool.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\udp_client-windows.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\udp_client.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\details\windows_include.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bin_to_hex.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\args.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\chrono.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\color.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\compile.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\core.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\format-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\format.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\locale.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\os.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\ostream.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\printf.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\ranges.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\bundled\xchar.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\chrono.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\compile.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\fmt.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\ostr.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\ranges.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fmt\xchar.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\formatter.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\fwd.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\logger-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\logger.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\pattern_formatter-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\pattern_formatter.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\android_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\ansicolor_sink-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\ansicolor_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\base_sink-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\base_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\basic_file_sink-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\basic_file_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\daily_file_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\dist_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\dup_filter_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\hourly_file_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\mongo_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\msvc_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\null_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\ostream_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\qt_sinks.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\ringbuffer_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\rotating_file_sink-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\rotating_file_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\sink-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\stdout_color_sinks-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\stdout_color_sinks.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\stdout_sinks-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\stdout_sinks.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\syslog_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\systemd_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\tcp_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\udp_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\wincolor_sink-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\wincolor_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\sinks\win_eventlog_sink.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\spdlog-inl.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\spdlog.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\stopwatch.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\tweakme.h" />
+    <ClInclude Include="Dependencies\spdlog\include\spdlog\version.h" />
+    <ClInclude Include="src\GUI\Investigation\Hardware\HardwareUsage.h" />
+    <ClInclude Include="src\Function\Logger.h" />
+    <ClInclude Include="src\LYGui.h" />
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Function\Timer.h" />
+    <ClInclude Include="src\Function\OpenCV.h" />
+    <ClInclude Include="src\Function\Plot.h" />
+    <ClInclude Include="src\GUI\Window\ImGuiWindow.h" />
+    <ClInclude Include="src\GUI\Window\Logger\LoggerWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\CodingFontTobi.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\CousineBold.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\CousineBoldItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\CousineItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\CousineRegular.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\Crisp.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\FontAudio.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\FontAwesome4.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\FontAwesome5Brands400.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\FontAwesome5Regular400.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\FontAwesome5Solid900.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\FontAwesome6Brands400.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\FontAwesome6Regular400.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\FontAwesome6Solid900.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ForkAwesome.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaBold.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaBoldItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaExtraBold.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaExtraBoldItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaExtraLight.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaExtraLightItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaItalicVariableFont.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaLight.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaLightItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaMedium.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaMediumItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaRegular.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaSemiBold.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaSemiBoldItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KarlaVariableFont.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\KenneyIcons.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\MaterialDesign.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\PixelCarnageMono.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ProggyClean.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ProggyCleanCE.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ProggyCleanSZ.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ProggySmall.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ProggySquare.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ProggySquareSZ.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ProggyTiny.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\ProggyTinySZ.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoBlack.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoBlackItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoBold.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoBoldItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoLight.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoLightItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoMedium.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoMediumItalic.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoRegular.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoThin.inl" />
+    <None Include="Dependencies\ImGui\ImGuiAl\fonts\RobotoThinItalic.inl" />
+    <None Include="Dependencies\ThreadPool\tests\BS_thread_pool_test.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Asset\Xml\Sample Curve.xml" />
+    <Xml Include="Asset\Xml\SensorID-1684997333-AA.xml" />
+    <Xml Include="Asset\Xml\Snr28(1_1)_AA1_5726.log_1.xml" />
+    <Xml Include="Asset\Xml\Snr28(1_1)_AA1_5726.log_2.xml" />
+    <Xml Include="Asset\Xml\Snr28(1_1)_AA2_5734.log_1.xml" />
+    <Xml Include="Asset\Xml\Snr28(1_1)_AA2_5734.log_2.xml" />
+    <Xml Include="Asset\Xml\UI\UI.xml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
